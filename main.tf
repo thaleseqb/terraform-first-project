@@ -19,6 +19,6 @@ resource "aws_instance" "app_server" {
   instance_type = "t2.micro"    // default instance for use
   key_name = "iac-first-project" // important to terraform ssh key detection
   tags = {
-    Name = "terraform instance aws"
+    Name = "terraform ansible python"
   }
 }
