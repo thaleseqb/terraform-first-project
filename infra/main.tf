@@ -11,14 +11,19 @@ terraform {
 
 provider "aws" {
   profile = "default"
-  region  = "us-east-1"
+  region  = var.aws_region
 }
 
 resource "aws_instance" "app_server" {
   ami           = "ami-0866a3c8686eaeeba" // selects region image in aws
-  instance_type = "t2.micro"    // default instance for use
-  key_name = "iac-first-project" // important to terraform ssh key detection
+  instance_type = var.instance // default instance for use
+  key_name = var.key // important to terraform ssh key detection
   tags = {
     Name = "terraform ansible python"
   }
+}
+
+resource "aws_key_pair" "ssh-key" {
+  key_name = var.key
+  public_key = file("${var.key}.pub")
 }
