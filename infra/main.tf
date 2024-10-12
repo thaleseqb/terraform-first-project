@@ -14,13 +14,14 @@ provider "aws" {
   region  = var.aws_region
 }
 
-resource "aws_instance" "app_server" {
-  ami           = "ami-0866a3c8686eaeeba" // selects region image in aws
+resource "aws_launch_template" "machine" {
+  image_id            = "ami-0866a3c8686eaeeba" // selects region image in aws
   instance_type = var.instance // default instance for use
   key_name = var.key // important to terraform ssh key detection
   tags = {
     Name = "terraform ansible python"
   }
+  security_group_names = [ var.secutiryGroup ]
 }
 
 resource "aws_key_pair" "ssh-key" {

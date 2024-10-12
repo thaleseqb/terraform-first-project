@@ -3,6 +3,7 @@ module "aws-dev" {
   instance = "t2.micro"
   aws_region = "us-east-1"
   key = "Iac-DEV"
+  secutiryGroup = "DEV"
 }
 
 output "IP" {

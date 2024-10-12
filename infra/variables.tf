@@ -9,3 +9,7 @@ variable "key" {
 variable "instance" {
   type = string
 }
+
+variable "secutiryGroup" {
+  type = string
+}

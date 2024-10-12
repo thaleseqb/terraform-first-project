@@ -3,6 +3,7 @@ module "aws-prod" {
   instance = "t2.micro"
   aws_region = "us-east-1"
   key = "Iac-PROD"
+  secutiryGroup = "Production"
 }
 
 output "IP" {
