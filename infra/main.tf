@@ -29,6 +29,13 @@ resource "aws_key_pair" "ssh-key" {
   public_key = file("${var.key}.pub")
 }
 
-output "public_ip" {
-  value = aws_instance.app_server.public_ip
+resource "aws_autoscaling_group" "autoscaling_group" {
+  availability_zones = [ "${var.aws_region}a" ]
+  name = var.groupName
+  max_size = var.maxSize
+  min_size = var.minSize
+  launch_template {
+    id = aws_launch_template.machine.id
+    version = "$Latest"
+  }
 }
