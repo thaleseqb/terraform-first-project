@@ -22,6 +22,7 @@ resource "aws_launch_template" "machine" {
     Name = "terraform ansible python"
   }
   security_group_names = [ var.secutiryGroup ]
+  user_data = filebase64("ansible.sh")
 }
 
 resource "aws_key_pair" "ssh-key" {
