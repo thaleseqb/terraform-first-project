@@ -25,3 +25,7 @@ variable "minSize" {
 variable "groupName" {
   type = string
 }
+
+variable "production" {
+  type = bool
+}
