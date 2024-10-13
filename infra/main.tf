@@ -75,3 +75,15 @@ resource "aws_lb_listener" "input_loadbalancer" {
     target_group_arn = aws_lb_target_group.lb_target_group.arn
   }
 }
+
+resource "aws_autoscaling_policy" "asPolicyProd" {
+  name = "terraformScaling"
+  autoscaling_group_name = var.groupName
+  policy_type = "TargetTrackingScaling"
+  target_tracking_configuration {
+    predefined_metric_specification {
+      predefined_metric_type = "ASGAverageCPUUtilization"
+    }
+    target_value = 50.0
+  }
+}
